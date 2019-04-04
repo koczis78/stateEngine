@@ -1,0 +1,23 @@
+<component name="ArtifactManager">
+  <artifact name="stateengine:jar">
+    <output-path>$PROJECT_DIR$/release/</output-path>
+    <root id="root">
+      <element id="archive" name="stateengine.jar">
+        <element id="module-output" name="stateEngine" />
+      </element>
+      <element id="library" level="module" name="httpclient-4.5.1.jar" module-name="stateEngine" />
+      <element id="library" level="module" name="log4j-1.2.16.jar" module-name="stateEngine" />
+      <element id="library" level="module" name="pi4j-gpio-extension.jar" module-name="stateEngine" />
+      <element id="library" level="module" name="pi4j-device.jar" module-name="stateEngine" />
+      <element id="library" level="module" name="libsocket-can-java.jar" module-name="stateEngine" />
+      <element id="library" level="module" name="slf4j-log4j12-1.6.6.jar" module-name="stateEngine" />
+      <element id="library" level="module" name="commons-io-2.4.jar" module-name="stateEngine" />
+      <element id="library" level="module" name="httpcore-4.4.3.jar" module-name="stateEngine" />
+      <element id="library" level="module" name="fluent-hc-4.5.1.jar" module-name="stateEngine" />
+      <element id="library" level="module" name="pi4j-service.jar" module-name="stateEngine" />
+      <element id="library" level="module" name="slf4j-api-1.7.2.jar" module-name="stateEngine" />
+      <element id="library" level="module" name="pi4j-core.jar" module-name="stateEngine" />
+      <element id="library" level="module" name="jcl-over-slf4j-1.7.2.jar" module-name="stateEngine" />
+    </root>
+  </artifact>
+</component>
