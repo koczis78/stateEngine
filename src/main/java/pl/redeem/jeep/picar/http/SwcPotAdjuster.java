@@ -7,8 +7,6 @@ import com.pi4j.io.spi.SpiMode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-
 public class SwcPotAdjuster {
     private static final Logger LOG = LoggerFactory.getLogger(SwcPotAdjuster.class);
 
@@ -33,7 +31,7 @@ public class SwcPotAdjuster {
         }
     }
 
-    void setPot(int potVal) {
+    private void setPot(int potVal) {
         LOG.debug("SET swc pot value: {}", potVal);
 
         byte msb = (byte)(potVal >> 8);
@@ -45,6 +43,19 @@ public class SwcPotAdjuster {
         } catch (Exception e) {
             LOG.error("Cannot write to spi", e);
         }
+    }
+
+    public void sendSwc(int potVal) {
+        LOG.debug("SEND swc value: {}", potVal);
+        setPot(potVal);
+
+        try {
+            Thread.sleep(200);
+        } catch (Exception e) {
+            LOG.error("sleep error", e);
+        }
+
+        setPot(SwcPotAdjuster.EVT_STEERING_OFF);
     }
 
 

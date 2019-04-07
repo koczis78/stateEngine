@@ -2,11 +2,8 @@ package pl.redeem.jeep.picar;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.redeem.jeep.picar.gpio.GpioPiCarController;
-import pl.redeem.jeep.picar.http.ExternalHttpConector;
-import pl.redeem.jeep.picar.http.PcHttpConector;
+import pl.redeem.jeep.picar.http.SwcPotAdjuster;
 
-import java.io.IOException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -19,6 +16,7 @@ public class StateMonitor {
 	private JeepState js;
 	//private PcHttpConector hc;
 	//private ExternalHttpConector ehc;
+	private SwcPotAdjuster swc;
 
 	
 	private int lastSendedDimmerValue = -1;
@@ -33,6 +31,7 @@ public class StateMonitor {
 
 		/*hc = new PcHttpConector();
 		ehc = new ExternalHttpConector();*/
+		swc = new SwcPotAdjuster();
 
 		scheduler.scheduleWithFixedDelay(new MonitorTask(), 100, 200, TimeUnit.MILLISECONDS);
 
@@ -52,22 +51,22 @@ public class StateMonitor {
 			      /* Wheel stering */
 			      if(js.wheelSteringButtonLeftCenter) {
 			    	  //hc.sendEvt(PcHttpConector.EVT_STEERING_LEFT_CENTER);
-
+						swc.sendSwc(SwcPotAdjuster.EVT_STEERING_LEFT_CENTER);
 			      } else if(js.wheelSteringButtonLeftDown) {
 			    	  //hc.sendEvt(PcHttpConector.EVT_STEERING_LEFT_DOWN);
-
+					  swc.sendSwc(SwcPotAdjuster.EVT_STEERING_LEFT_DOWN);
 			      } else if(js.wheelSteringButtonLeftUp) {
 			    	  //hc.sendEvt(PcHttpConector.EVT_STEERING_LEFT_UP);
-
+					  swc.sendSwc(SwcPotAdjuster.EVT_STEERING_LEFT_UP);
 			      } else if(js.wheelSteringButtonRightCenter) {
 			    	  //hc.sendEvt(PcHttpConector.EVT_STEERING_RIGHT_CENTER);
-
+					  swc.sendSwc(SwcPotAdjuster.EVT_STEERING_RIGHT_CENTER);
 			      } else if(js.wheelSteringButtonRightDown) {
 			    	  //hc.sendEvt(PcHttpConector.EVT_STEERING_RIGHT_DOWN);
-
+					  swc.sendSwc(SwcPotAdjuster.EVT_STEERING_RIGHT_DOWN);
 			      } else if(js.wheelSteringButtonRightUp) {
 			    	  //hc.sendEvt(PcHttpConector.EVT_STEERING_RIGHT_UP);
-
+					  swc.sendSwc(SwcPotAdjuster.EVT_STEERING_RIGHT_UP);
 			      }
 			      
 			      /* IGN - on/off PC*/
